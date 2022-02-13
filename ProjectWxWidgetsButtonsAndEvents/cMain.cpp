@@ -1,60 +1,60 @@
 #include "cMain.h"
+// Macro for event handling
+wxBEGIN_EVENT_TABLE(cMain, wxFrame)
+	EVT_BUTTON(10001, OnButtonClicked)
+wxEND_EVENT_TABLE()
 // Constructor
 cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Buttons and events:", wxPoint(30, 30), wxSize(800, 600)) {
-	// 09-02-2022 10.44
-	// Declaring local variables
-	// Panel for buttons
-	m_panelForButtonsTop = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(150, 50));
-	m_panelForButtonsTop->SetBackgroundColour(wxColor(30, 30, 30));
-	m_panelForButtonsBottom = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(150, 50));
-	m_panelForButtonsBottom->SetBackgroundColour(wxColor(30, 30, 30));
-	// Buttons
-	m_newButton = new wxButton(this, wxID_ANY, "New", wxPoint(10, 10), wxSize(150, 50));
-	m_okButton = new wxButton(this, wxID_ANY, "Ok", wxPoint(10, 60), wxSize(150, 50));
-	m_cancelButton = new wxButton(this, wxID_ANY, "Cancel", wxPoint(10, 110), wxSize(150, 50));
-	m_closeButton = new wxButton(this, wxID_ANY, "Close", wxPoint(10, 160), wxSize(150, 50));
-	// Panel for content
-	m_panelForContent = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(150, 50));
-	m_panelForContent->SetBackgroundColour(wxColor(30, 30, 30));
-	// panel for content controls
-	m_panelForContentControls = new wxPanel(m_panelForContent, wxID_ANY, wxDefaultPosition, wxSize(150, 50));
-	m_panelForContentControls->SetBackgroundColour(wxColor(100, 200, 100));
-	// m_wxBoxSizerAll
-	m_wxBoxSizerAll = new wxBoxSizer(wxHORIZONTAL);
-	// this->SetSizer(m_wxBoxSizerAll);
-	// m_wxBoxSizerButtons
-	m_wxBoxSizerButtons = new wxBoxSizer(wxVERTICAL);
-	// Add top panel for buttons
-	m_wxBoxSizerButtons->Add(m_panelForButtonsTop, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP | wxBOTTOM, 5);
-	// Add buttons
-	m_wxBoxSizerButtons->Add(m_newButton, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP | wxBOTTOM, 5);
-	m_wxBoxSizerButtons->Add(m_okButton, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP | wxBOTTOM, 5);
-	m_wxBoxSizerButtons->Add(m_cancelButton, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP | wxBOTTOM, 5);
-	m_wxBoxSizerButtons->Add(m_closeButton, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP | wxBOTTOM, 5);
-	// Add bottom panel for buttons
-	m_wxBoxSizerButtons->Add(m_panelForButtonsBottom, 1, wxEXPAND | wxLEFT | wxRIGHT | wxTOP | wxBOTTOM, 5);
-	// Add m_wxBoxSizerButtons to m_wxBoxSizerAll
-	m_wxBoxSizerAll->Add(m_wxBoxSizerButtons, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP | wxBOTTOM, 5);
-	// m_wxBoxSizerContent
-	m_wxBoxSizerContent = new wxBoxSizer(wxVERTICAL);
-	// Add panel for content 
-	m_wxBoxSizerContent->Add(m_panelForContent, 1, wxEXPAND | wxRIGHT | wxTOP | wxBOTTOM, 5);
-	// **Nested panel**
-	// m_wxBoxSizerContentControls
-	m_wxBoxSizerContentControls = new wxBoxSizer(wxHORIZONTAL);
-	// Add m_panelForContentControls
-	m_wxBoxSizerContentControls->Add(m_panelForContentControls, 1, wxEXPAND | wxLEFT | wxRIGHT | wxTOP | wxBOTTOM, 10);
-	// Use m_wxBoxSizerContentControls on m_panelForContentControls
-	m_panelForContentControls->SetSizer(m_wxBoxSizerContentControls);
-	// ** End for nested panel **
-	// Add m_wxBoxSizerContent to m_wxBoxSizerAll
-	m_wxBoxSizerAll->Add(m_wxBoxSizerContent, 1, wxEXPAND  | wxRIGHT | wxTOP | wxBOTTOM, 5);
-	// use m_wxBoxSizerAll on m_frame
-	this->SetSizer(m_wxBoxSizerAll);
-	// Maximize m_frame
+	//13-02-2022 15.13
+	// Panels
+	//
+	m_panelTop = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(150, 100));
+	m_panelTop->SetBackgroundColour(wxColor(30, 30, 30));
+	//
+	m_panelCenterLeft = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(150, 100));
+	m_panelCenterLeft->SetBackgroundColour(wxColor(30, 30, 30));
+	//
+	m_panelCenterCenter = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(150, 150));
+	m_panelCenterCenter->SetBackgroundColour(wxColor(30, 30, 30));
+	//
+	m_panelCenterRight = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(150, 100));
+	m_panelCenterRight->SetBackgroundColour(wxColor(30, 30, 30));
+	//
+	m_panelBottom = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(150, 100));
+	m_panelBottom->SetBackgroundColour(wxColor(30, 30, 30));
+	// Buttons on m_panelCenterLeft
+	m_newButton = new wxButton(m_panelCenterLeft, 10001, "New", wxPoint(10, 10), wxSize(130, 40));
+	m_okButton = new wxButton(m_panelCenterLeft, wxID_ANY, "Ok", wxPoint(10, 60), wxSize(130, 40));
+	m_cancelButton = new wxButton(m_panelCenterLeft, wxID_ANY, "Cancel", wxPoint(10, 110), wxSize(130, 40));
+	m_closeButton = new wxButton(m_panelCenterLeft, wxID_ANY, "Close", wxPoint(10, 160), wxSize(130, 40));
+	// other controls on m_panelCenterCenter
+	m_textControlCenter = new  wxTextCtrl(m_panelCenterCenter, wxID_ANY, "", wxPoint(10, 10), wxSize(300, 40));
+	m_listBoxCenter = new wxListBox(m_panelCenterCenter, wxID_ANY, wxPoint(10, 60), wxSize(300, 300));
+	// Sizers
+	// m_boxSizerHorizontal
+	m_boxSizerHorizontal = new wxBoxSizer(wxHORIZONTAL);
+	m_boxSizerHorizontal->Add(m_panelCenterLeft, 0, wxEXPAND  | wxRIGHT , 10);
+	m_boxSizerHorizontal->Add(m_panelCenterCenter, 1, wxEXPAND  | wxRIGHT  , 10);
+	m_boxSizerHorizontal->Add(m_panelCenterRight, 0, wxEXPAND , 10);
+	// m_boxSizerVertical
+	m_boxSizerVertical = new wxBoxSizer(wxVERTICAL);
+	m_boxSizerVertical->Add(m_panelTop, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP | wxBOTTOM, 10);
+	m_boxSizerVertical->Add(m_boxSizerHorizontal, 1, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, 10);
+	m_boxSizerVertical->Add(m_panelBottom, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, 10);
+	// Use m_boxSizerVertical on the frame 
+	this->SetSizerAndFit(m_boxSizerVertical);
+	// Maximize frame
 	this->Maximize();
+	// Events
+	
 }
 // Destructor
 cMain::~cMain() {
 	// 09-02-2022 10.56
+}
+// Events
+void cMain::OnButtonClicked(wxCommandEvent& evt){
+	// 13-02-2022 16.48
+	m_listBoxCenter->Append(m_textControlCenter->GetValue());
+	evt.Skip();
 }

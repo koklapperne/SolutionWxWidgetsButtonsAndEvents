@@ -8,37 +8,26 @@ public:
 	// Destructor
 	~cMain();
 public:
-	// Data members
-	// Panels for buttons
-	wxPanel* m_panelForButtonsTop = nullptr;
-	wxPanel* m_panelForButtonsBottom = nullptr;
-	// Panel for content
-	wxPanel* m_panelForContent = nullptr;
-	// Panel to simulate content controls
-	wxPanel* m_panelForContentControls = nullptr;
-	// Buttons
-	wxButton* m_newButton = nullptr;
-	wxButton* m_okButton = nullptr;
-	wxButton* m_cancelButton = nullptr;
-	wxButton* m_closeButton = nullptr;
-	// Sizers
-	wxSizer* m_wxBoxSizerAll = nullptr;
-	wxSizer* m_wxBoxSizerContentControls = nullptr;
-	wxSizer* m_wxBoxSizerContent = nullptr;
-	wxSizer* m_wxBoxSizerButtons = nullptr;
-	/*
 	// Panels
-	wxPanel* m_panelForButtonsTop = nullptr;
-	wxPanel* m_panelForButtonsBottom = nullptr;
-	wxPanel* m_panelForContent = nullptr;
+	wxPanel *m_panelTop = nullptr;
+	wxPanel *m_panelCenterLeft = nullptr;
+	wxPanel *m_panelCenterCenter = nullptr;
+	wxPanel *m_panelCenterRight = nullptr;
+	wxPanel *m_panelBottom = nullptr;
 	// Buttons
-	wxButton* m_newButton = nullptr;
-	wxButton* m_okButton = nullptr;
-	wxButton* m_cancelButton = nullptr;
-	wxButton* m_closeButton = nullptr;
+	wxButton *m_newButton = nullptr;
+	wxButton *m_okButton = nullptr;
+	wxButton *m_cancelButton = nullptr;
+	wxButton *m_closeButton = nullptr;
+	// Other controls
+	wxTextCtrl *m_textControlCenter=nullptr;
+	wxListBox* m_listBoxCenter = nullptr;
 	// Sizers
-	wxBoxSizer* m_sizerVerticalForButtons = nullptr;
-	wxSizer* m_sizerHorizontalAll = nullptr;
-	*/
+	wxBoxSizer *m_boxSizerVertical = nullptr;
+	wxBoxSizer *m_boxSizerHorizontal = nullptr;
+	// Events
+	void OnButtonClicked(wxCommandEvent& evt);
+	wxDECLARE_EVENT_TABLE();
+		
 };
 
