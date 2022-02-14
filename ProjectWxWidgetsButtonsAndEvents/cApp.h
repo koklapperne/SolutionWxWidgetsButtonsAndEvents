@@ -11,6 +11,6 @@ public:
 	//
 	bool OnInit();
 private:
-	cMain* m_frame = nullptr;
+	cMain *m_frame = nullptr;
 };
 
