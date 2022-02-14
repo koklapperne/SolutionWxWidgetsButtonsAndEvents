@@ -11,7 +11,7 @@ $ git clone https://github.com/koklapperne/SolutionWxWidgetsButtonsAndEvents.git
 Do this before work begins in the local repository
 ```
 At work:
-$ cd "/H/Udvikling/C++/SolutionWxWidgetsButtonsAndEvents"
+$ cd "/H/Udvikling/C++wxWidget/SolutionWxWidgetsButtonsAndEvents"
 At home:
 $ cd "/D/Programmering/C++/SolutionWxWidgetsButtonsAndEvents"
 $ git pull
