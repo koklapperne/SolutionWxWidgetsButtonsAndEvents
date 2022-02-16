@@ -26,9 +26,11 @@ public:
 	wxButton *m_cancelButton = nullptr;
 	wxButton *m_closeButton = nullptr;
 	// Dialogs
-	wxDialog *m_cancelDialog = nullptr;
+	wxDialog* m_cancelDialog = nullptr;
+	//wxMessageDialog *m_cancelDialog = nullptr;
 	wxDialog *m_closeDialog = nullptr;
-	wxDialog* m_okDialog = nullptr;
+	//wxMessageDialog* m_closeDialog = nullptr;
+	wxDialog *m_okDialog = nullptr;
 	// Other controls
 	wxTextCtrl *m_textControlCenter=nullptr;
 	wxListBox *m_listBoxCenter = nullptr;

@@ -1,5 +1,6 @@
 #include "cMain.h"
-// Macro for event handling
+#include "wx/artprov.h"
+// Macro for event handling, must be in the top of the cpp-file!
 wxBEGIN_EVENT_TABLE(cMain, wxFrame)
 	EVT_BUTTON(10001, OnNewButtonClicked)
 	EVT_BUTTON(10002, OnOkButtonClicked)
@@ -26,7 +27,6 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Buttons and events:", wxPoint(30, 3
 	SetMenuBar(m_menuBar);
 	//
 	// Panels
-	//
 	m_panelTop = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(150, 100));
 	m_panelTop->SetBackgroundColour(wxColor(30, 30, 30));
 	//
@@ -46,10 +46,6 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Buttons and events:", wxPoint(30, 3
 	m_okButton = new wxButton(m_panelCenterLeft, 10002, "Ok", wxPoint(10, 60), wxSize(130, 40));
 	m_cancelButton = new wxButton(m_panelCenterLeft, 10003, "Cancel", wxPoint(10, 110), wxSize(130, 40));
 	m_closeButton = new wxButton(m_panelCenterLeft, 10004, "Close", wxPoint(10, 160), wxSize(130, 40));
-	// Dialogs
-	m_cancelDialog = new wxDialog(this, wxID_ANY, "Dialog: Cancel", wxDefaultPosition, wxSize(400, 200));
-	m_okDialog = new wxDialog(this, wxID_ANY, "Dialog: Ok", wxDefaultPosition, wxSize(400, 200));
-	m_closeDialog = new wxDialog(this, wxID_ANY, "Dialog: Close", wxDefaultPosition, wxSize(400, 200));
 	// other controls on m_panelCenterCenter
 	m_textControlCenter = new  wxTextCtrl(m_panelCenterCenter, wxID_ANY, "", wxPoint(10, 10), wxSize(300, 40));
 	m_listBoxCenter = new wxListBox(m_panelCenterCenter, wxID_ANY, wxPoint(10, 60), wxSize(300, 300));
@@ -80,21 +76,27 @@ void cMain::OnNewButtonClicked(wxCommandEvent& evt){
 	evt.Skip();
 }
 void cMain::OnCancelButtonClicked(wxCommandEvent& evt) {
-	// 14-02-2022 09.48
+	// 16-02-2022 11.23
+	m_cancelDialog = new wxDialog(this, wxID_ANY, "Dialog: Cancel", wxDefaultPosition, wxSize(400, 200));
+	//m_cancelDialog = new wxMessageDialog(this, wxT("Dialog: Cancel"), wxT("Message:"), wxCANCEL);
 	m_cancelDialog->CenterOnParent();
 	m_cancelDialog->ShowModal();
 	evt.Skip();
 }
 void cMain::OnOkButtonClicked(wxCommandEvent& evt) {
-	// 14-02-2022 12.54
+	// 16-02-2022 11.23
+	m_okDialog = new wxDialog(this, wxID_ANY, "Dialog: Ok", wxDefaultPosition, wxSize(400, 200));
+	// m_okDialog = new wxMessageDialog(this, wxID_ANY, "Dialog: Ok", wxDefaultPosition, wxSize(400, 200));
 	m_okDialog->CenterOnParent();
 	m_okDialog->ShowModal();
 	evt.Skip();
 }
 void cMain::OnCloseButtonClicked(wxCommandEvent& evt) {
-	// 14-02-2022 10.51
+	// 16-02-2022 11.23
+	m_closeDialog = new wxDialog(this, wxID_ANY, "Dialog: Close", wxDefaultPosition, wxSize(400, 200));
+	//m_closeDialog = new wxMessageDialog(this, wxT("Dialog: Close"), wxT("Message:"), wxCLOSE);
 	m_closeDialog->CenterOnParent();
 	m_closeDialog->ShowModal();
-	// Destroy();
+	this->Close();
 	evt.Skip();
 }
